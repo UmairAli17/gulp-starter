@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--build:css css/styles.min.css-->
+         <link rel="stylesheet" type="text/css" href="styles/styles.css">
+         <link rel="stylesheet" type="text/css" href="styles/css.css">
+    	<!--endbuild-->
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="container-fluid">
+            <div class="row">
+            	<div class="col-md-8 col-md-offset-2">
+            		<h1>Testing the Quiz - Version One!!</h1>
+                    <!--Question One-->
+                    <div class="row">
+                        <div class="questions">
+                            <label for="q1">What is your first thought when you receive a new assignment?</label>
+                            <a href="#" class="btn btn-lg btn-default options" name="q1" data-proc-val="5" role="button">Oh dear.. oh dear oh dear</a>
+                            <a href="#" class="btn btn-lg btn-default options" name="q1" data-proc-val="3" role="button">Good Answer</a>
+                        </div>
+                    </div>
+            	</div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+        <!--build:js scripts/main.min.js-->
+            <script src="scripts/quiz.js"></script>
+        <!--endbuild-->
+    </body>
+</html>
