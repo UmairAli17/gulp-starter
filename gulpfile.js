@@ -20,6 +20,13 @@ gulp.task('sass', function() {
     }))
 });
 
+
+
+gulp.task('fonts', function() {
+  return gulp.src('app/fonts/**/*')
+  .pipe(gulp.dest('dist/fonts'))
+})
+
 gulp.task('serve', function() {
   browserSync.init({
     server: {
@@ -49,7 +56,7 @@ gulp.task('watch', ['serve', 'sass'], function (){
 
 //the following will run all the below tasks in the order they are written. items in [] will run in parallel
 gulp.task('build', function (callback) {
-  runSequence(['sass', 'useref'],
+  runSequence(['sass', 'fonts' 'useref'],
     callback
   )
 })
