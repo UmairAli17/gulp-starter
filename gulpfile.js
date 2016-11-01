@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var runSequence = require('run-sequence');
-
+var imagemin = require('gulp-imagemin');
 
 //Set up the server
 gulp.task('sass', function() {
@@ -20,7 +20,12 @@ gulp.task('sass', function() {
     }))
 });
 
-
+//minify images
+gulp.task('images', function(){
+  return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
+  .pipe(imagemin())
+  .pipe(gulp.dest('dist/images'))
+});
 
 gulp.task('fonts', function() {
   return gulp.src('app/fonts/**/*')
