@@ -22,7 +22,7 @@ gulp.task('sass', function() {
 
 //minify images
 gulp.task('images', function(){
-  return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
+  return gulp.src('src/images/**/*.+(png|jpg|gif|svg)')
   .pipe(imagemin())
   .pipe(gulp.dest('dist/images'))
 });
