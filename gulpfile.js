@@ -1,3 +1,4 @@
+console.log('Node version: ' + process.version);
 var gulp = require('gulp'),
     useref = require('gulp-useref');
 var sass = require('gulp-sass');
@@ -8,7 +9,9 @@ var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var runSequence = require('run-sequence');
-var imagemin = require('gulp-imagemin');
+//var imagemin = require('gulp-imagemin');
+
+
 
 //Set up the server
 gulp.task('sass', function() {
@@ -20,22 +23,22 @@ gulp.task('sass', function() {
     }))
 });
 
-//minify images
-gulp.task('images', function(){
-  return gulp.src('src/images/**/*.+(png|jpg|gif|svg)')
-  .pipe(imagemin())
-  .pipe(gulp.dest('dist/images'))
-});
-
 gulp.task('fonts', function() {
-  return gulp.src('app/fonts/**/*')
+  return gulp.src('src/fonts/**/*')
   .pipe(gulp.dest('dist/fonts'))
 })
 
-gulp.task('serve', function() {
+//minify images
+//gulp.task('images', function(){
+//  return gulp.src('src/images/**/*.+(png|jpg|gif|svg)')
+//  .pipe(imagemin())
+//  .pipe(gulp.dest('dist/images'))
+//})
+
+gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: 'src'
     },
   })
 })
@@ -47,11 +50,11 @@ gulp.task('useref', function(){
     // Minifies only if it's a JavaScript file
     .pipe(gulpIf('*.scripts', uglify()))
     // Minifies only if it's a CSS file
-    .pipe(gulpIf('*.css', cssnano()))
+    .pipe(gulpIf('*.styles', cssnano()))
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('watch', ['serve', 'sass'], function (){
+gulp.task('watch', ['browserSync', 'sass'], function(){
   gulp.watch('src/scss/**/*.scss', ['sass']); 
   // Other watchers
   // Reloads the browser whenever HTML or JS files change
@@ -59,16 +62,17 @@ gulp.task('watch', ['serve', 'sass'], function (){
   gulp.watch('src/scripts/**/*.scripts', browserSync.reload); 
 });
 
+
 //the following will run all the below tasks in the order they are written. items in [] will run in parallel
 gulp.task('build', function (callback) {
-  runSequence(['sass', 'fonts' 'useref'],
+  runSequence(['sass', 'fonts', /*'images',*/ 'useref'],
     callback
   )
 })
 
 //The following will run the tasks of compiling the sass, running the server and then running the watch tasks when you run "gulp" in the cli
 gulp.task('default', function (callback) {
-  runSequence('build', ['serve', 'watch'],
+  runSequence('build', ['browserSync', 'watch'],
     callback
   )
 })
