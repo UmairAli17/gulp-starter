@@ -1,4 +1,3 @@
-console.log('Node version: ' + process.version);
 var gulp = require('gulp'),
     useref = require('gulp-useref');
 var sass = require('gulp-sass');
