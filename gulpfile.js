@@ -8,8 +8,6 @@ var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var runSequence = require('run-sequence');
-//var imagemin = require('gulp-imagemin');
-
 
 
 //Set up the server
@@ -27,12 +25,6 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest('dist/fonts'))
 })
 
-//minify images
-//gulp.task('images', function(){
-//  return gulp.src('src/images/**/*.+(png|jpg|gif|svg)')
-//  .pipe(imagemin())
-//  .pipe(gulp.dest('dist/images'))
-//})
 
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -49,9 +41,10 @@ gulp.task('useref', function(){
     // Minifies only if it's a JavaScript file
     .pipe(gulpIf('*.scripts', uglify()))
     // Minifies only if it's a CSS file
-    .pipe(gulpIf('*.styles', cssnano()))
+    .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest('dist'))
 });
+
 
 gulp.task('watch', ['browserSync', 'sass'], function(){
   gulp.watch('src/scss/**/*.scss', ['sass']); 
@@ -60,7 +53,6 @@ gulp.task('watch', ['browserSync', 'sass'], function(){
   gulp.watch('src/*.html', browserSync.reload); 
   gulp.watch('src/scripts/**/*.scripts', browserSync.reload); 
 });
-
 
 //the following will run all the below tasks in the order they are written. items in [] will run in parallel
 gulp.task('build', function (callback) {
@@ -75,4 +67,3 @@ gulp.task('default', function (callback) {
     callback
   )
 })
-
